@@ -4,8 +4,9 @@ A log of the projects I've worked on, grouped by company.
 
 ## Editing
 
-Go to `/admin` and sign in with `ADMIN_PASSWORD`. Once signed in, every page shows
-**Edit** / **+ Add** links, and 1:1 notes become visible (they're hidden from everyone else).
+The whole site is private: every page redirects to `/login` until you sign in with
+`ADMIN_PASSWORD`. Once signed in, pages show **Edit** / **+ Add** links, and `/admin`
+lists everything (and has **Sign out**).
 
 `data/career.ts` holds the types and the starting content. After the first save from
 `/admin`, the stored copy is used instead and edits to that file have no effect.
