@@ -1,26 +1,18 @@
-// Types for the project log, plus the starting content. Once you save anything
-// from /admin, the stored copy (see lib/store.ts) is used instead of this seed.
-
 export const STATUSES = ["Shipped", "In progress", "Maintained", "Paused"] as const;
 
 export type Project = {
   slug: string;
   title: string;
-  /** One-line summary shown in the project list. */
   summary: string;
-  /** e.g. "Jun 2025 – Sep 2025" */
   period?: string;
   status?: (typeof STATUSES)[number];
   stack?: string[];
-  /** Measurable outcomes — the stuff worth saying out loud in a 1:1. */
   impact?: string[];
   problem?: string;
   approach?: string;
   challenges?: string[];
-  /** Who you worked with / who it was for. */
   collaborators?: string;
   links?: { label: string; url: string }[];
-  /** Private talking points: what you'd do next, open questions, asks. */
   notes?: string[];
 };
 
@@ -29,11 +21,9 @@ export type Company = {
   name: string;
   role: string;
   start: string;
-  /** Omit while still there. */
   end?: string;
   location?: string;
   logo?: string;
-  /** Set for dark/black logos so they're inverted in dark mode. */
   invertLogoInDark?: boolean;
   url?: string;
   blurb?: string;

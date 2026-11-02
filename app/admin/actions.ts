@@ -8,7 +8,6 @@ import { STATUSES, type Company, type Project } from "@/data/career";
 
 export type FormState = { error?: string };
 
-// "new" is used in /admin URLs for create forms; "admin" would shadow /admin.
 const RESERVED = ["new", "admin"];
 
 function text(fd: FormData, key: string) {
@@ -94,7 +93,6 @@ export async function saveCompany(
     slug = original;
   } else {
     slug = uniqueSlug(name, companies.map((c) => c.slug));
-    // Newest role first, matching the home page order.
     companies.unshift({ ...fields, slug, projects: [] } satisfies Company);
   }
 

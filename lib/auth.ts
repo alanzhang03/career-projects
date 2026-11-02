@@ -4,8 +4,6 @@ import { redirect } from "next/navigation";
 
 const COOKIE = "career_admin";
 
-// The session cookie is an HMAC keyed by ADMIN_PASSWORD, so changing the
-// password signs out every device.
 function sessionToken() {
   const password = process.env.ADMIN_PASSWORD;
   if (!password) return null;
@@ -28,7 +26,6 @@ export async function isAdmin() {
   return Boolean(expected && actual && safeEqual(actual, expected));
 }
 
-/** The whole site is private: pages send signed-out visitors to /login. */
 export async function requireSignedIn() {
   if (!(await isAdmin())) redirect("/login");
 }

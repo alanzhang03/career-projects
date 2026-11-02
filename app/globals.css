@@ -221,8 +221,6 @@ a.card:hover {
   align-items: baseline;
 }
 
-/* Admin */
-
 .edit-link {
   color: var(--accent);
   font-size: 0.9rem;
