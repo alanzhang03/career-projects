@@ -41,65 +41,52 @@ export default async function ProjectPage({
       </p>
       <p className="lead">{project.summary}</p>
 
-      {project.stack?.length ? (
-        <div className="tags">
-          {project.stack.map((t) => (
-            <span key={t} className="tag">
-              {t}
-            </span>
-          ))}
-        </div>
+      {project.problem ? (
+        <section>
+          <h2>Problem</h2>
+          <p className="pre-line">{project.problem}</p>
+        </section>
+      ) : null}
+
+      {project.contributions?.length ? (
+        <section>
+          <h2>Contributions</h2>
+          <ul>
+            {project.contributions.map((x) => (
+              <li key={x}>{x}</li>
+            ))}
+          </ul>
+        </section>
       ) : null}
 
       {project.impact?.length ? (
         <section>
           <h2>Impact</h2>
           <ul>
-            {project.impact.map((i) => (
-              <li key={i}>{i}</li>
+            {project.impact.map((x) => (
+              <li key={x}>{x}</li>
             ))}
           </ul>
         </section>
       ) : null}
 
-      {project.problem ? (
+      {project.decisions?.length ? (
         <section>
-          <h2>Problem</h2>
-          <p>{project.problem}</p>
-        </section>
-      ) : null}
-
-      {project.approach ? (
-        <section>
-          <h2>Approach</h2>
-          <p>{project.approach}</p>
-        </section>
-      ) : null}
-
-      {project.challenges?.length ? (
-        <section>
-          <h2>Challenges</h2>
+          <h2>Technical decisions</h2>
           <ul>
-            {project.challenges.map((c) => (
-              <li key={c}>{c}</li>
+            {project.decisions.map((x) => (
+              <li key={x}>{x}</li>
             ))}
           </ul>
         </section>
       ) : null}
 
-      {project.collaborators ? (
+      {project.initiative?.length ? (
         <section>
-          <h2>Worked with</h2>
-          <p>{project.collaborators}</p>
-        </section>
-      ) : null}
-
-      {admin && project.notes?.length ? (
-        <section className="notes">
-          <h2>1:1 notes</h2>
+          <h2>Initiative</h2>
           <ul>
-            {project.notes.map((n) => (
-              <li key={n}>{n}</li>
+            {project.initiative.map((x) => (
+              <li key={x}>{x}</li>
             ))}
           </ul>
         </section>
@@ -115,6 +102,17 @@ export default async function ProjectPage({
                   {l.label}
                 </a>
               </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
+
+      {admin && project.notes?.length ? (
+        <section className="notes">
+          <h2>1:1 notes</h2>
+          <ul>
+            {project.notes.map((n) => (
+              <li key={n}>{n}</li>
             ))}
           </ul>
         </section>

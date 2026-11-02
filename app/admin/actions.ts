@@ -126,12 +126,11 @@ export async function saveProject(
     summary,
     period: text(fd, "period"),
     status: STATUSES.find((s) => s === status),
-    stack: list(fd, "stack", ","),
-    impact: list(fd, "impact"),
     problem: text(fd, "problem"),
-    approach: text(fd, "approach"),
-    challenges: list(fd, "challenges"),
-    collaborators: text(fd, "collaborators"),
+    contributions: list(fd, "contributions"),
+    impact: list(fd, "impact"),
+    decisions: list(fd, "decisions"),
+    initiative: list(fd, "initiative"),
     links: list(fd, "links")?.map((line) => {
       const [label, url] = line.includes("|")
         ? line.split("|").map((s) => s.trim())

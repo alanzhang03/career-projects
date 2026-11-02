@@ -2,7 +2,7 @@ import { promises as fs } from "node:fs";
 import path from "node:path";
 import { Redis } from "@upstash/redis";
 import { requireSignedIn } from "@/lib/auth";
-import { companies as seed, type Company } from "@/data/career";
+import { companies as seed, type Company, type Project } from "@/data/career";
 
 const KEY = "career:companies";
 const LOCAL_FILE = path.join(process.cwd(), ".data", "career.json");
@@ -14,13 +14,49 @@ const redis = url && token ? new Redis({ url, token }) : null;
 
 export const storageLabel = redis ? "Upstash Redis" : ".data/career.json";
 
-export async function readCompanies(): Promise<Company[]> {
+type LegacyProject = Project & {
+  approach?: string;
+  challenges?: string[];
+  collaborators?: string;
+  stack?: string[];
+};
+
+function bullets(text?: string) {
+  if (!text) return [];
+  const parts = text.trim().startsWith("-")
+    ? text.split(/(?:^|\s)-\s+/)
+    : text.split("\n");
+  return parts.map((s) => s.trim()).filter(Boolean);
+}
+
+function migrate(p: LegacyProject): Project {
+  const decisions = [
+    ...(p.decisions ?? []),
+    ...bullets(p.approach),
+    ...(p.challenges ?? []),
+  ];
+  const project: LegacyProject = {
+    ...p,
+    decisions: decisions.length ? decisions : undefined,
+  };
+  delete project.approach;
+  delete project.challenges;
+  delete project.collaborators;
+  delete project.stack;
+  return project;
+}
+
+async function load(): Promise<Company[]> {
   if (redis) return (await redis.get<Company[]>(KEY)) ?? seed;
   try {
     return JSON.parse(await fs.readFile(LOCAL_FILE, "utf8"));
   } catch {
     return seed;
   }
+}
+
+export async function readCompanies(): Promise<Company[]> {
+  return (await load()).map((c) => ({ ...c, projects: c.projects.map(migrate) }));
 }
 
 export async function getCompanies() {

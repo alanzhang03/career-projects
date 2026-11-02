@@ -193,21 +193,6 @@ a.card:hover {
   color: var(--accent);
 }
 
-.tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-top: 16px;
-}
-
-.tag {
-  font-size: 0.8rem;
-  padding: 3px 10px;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  background: var(--surface);
-}
-
 .notes {
   background: var(--notes-bg);
   border: 1px solid var(--notes-border);
@@ -348,4 +333,8 @@ a.card:hover {
 .error {
   color: #dc2626;
   font-size: 0.9rem;
+}
+
+.pre-line {
+  white-space: pre-line;
 }

@@ -6,12 +6,11 @@ export type Project = {
   summary: string;
   period?: string;
   status?: (typeof STATUSES)[number];
-  stack?: string[];
-  impact?: string[];
   problem?: string;
-  approach?: string;
-  challenges?: string[];
-  collaborators?: string;
+  contributions?: string[];
+  impact?: string[];
+  decisions?: string[];
+  initiative?: string[];
   links?: { label: string; url: string }[];
   notes?: string[];
 };
@@ -57,7 +56,6 @@ export const companies: Company[] = [
         summary:
           "Automated compliance analysis for land survey submissions using LLMs.",
         status: "Shipped",
-        stack: ["TypeScript", "Python", "AWS Bedrock", "Lambda", "S3"],
         impact: [
           "Saves ~2 hours per submission",
           "Covers 5–10 nationwide reviews per day",
@@ -69,7 +67,6 @@ export const companies: Company[] = [
         summary:
           "CI/CD-integrated reviewer (Claude Sonnet) that reconstructs full file context from unified diffs and posts inline PR comments.",
         status: "Shipped",
-        stack: ["Node.js", "Claude Sonnet", "CI/CD"],
         impact: ["Cuts ~30 minutes of review time per PR"],
       },
       {
@@ -78,7 +75,6 @@ export const companies: Company[] = [
         summary:
           "Node.js CLI orchestrating uploads across CMS, S3, and Workfront APIs.",
         status: "Shipped",
-        stack: ["Node.js", "S3", "Workfront API"],
         impact: [
           "Replaced a week-long manual process",
           "Saves 100+ hours per batch",
@@ -90,7 +86,6 @@ export const companies: Company[] = [
         summary:
           "Reusable server-side system generating dynamic community brochures with listing data, QR codes, and configurable filtering.",
         status: "Shipped",
-        stack: ["Next.js", "TypeScript"],
         impact: ["Used by thousands of users monthly"],
       },
       {
@@ -99,7 +94,6 @@ export const companies: Company[] = [
         summary:
           "Serverless pipeline aggregating 4 competitors' undocumented APIs into a unified, SQL-queryable warehouse.",
         status: "Shipped",
-        stack: ["AWS CDK", "Lambda", "Glue", "Athena", "EventBridge"],
         impact: ["4 data sources unified", "Zero operational maintenance"],
       },
     ],

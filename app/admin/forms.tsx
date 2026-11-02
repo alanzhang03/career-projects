@@ -175,31 +175,36 @@ export function ProjectForm({
             </select>
           </Field>
         </div>
-        <Field label="Stack" hint="comma-separated">
-          <input name="stack" defaultValue={project?.stack?.join(", ")} />
+        <Field label="Problem" hint="why it was needed, and the baseline">
+          <textarea name="problem" rows={3} defaultValue={project?.problem} />
         </Field>
-        <Field label="Impact" hint="one per line">
+        <Field label="Contributions" hint="one per line — what you personally did">
+          <textarea
+            name="contributions"
+            rows={4}
+            defaultValue={project?.contributions?.join("\n")}
+          />
+        </Field>
+        <Field label="Impact" hint="one per line — numbers where possible">
           <textarea
             name="impact"
             rows={3}
             defaultValue={project?.impact?.join("\n")}
           />
         </Field>
-        <Field label="Problem">
-          <textarea name="problem" rows={3} defaultValue={project?.problem} />
-        </Field>
-        <Field label="Approach">
-          <textarea name="approach" rows={4} defaultValue={project?.approach} />
-        </Field>
-        <Field label="Challenges" hint="one per line">
+        <Field label="Technical decisions" hint="one per line — the choice and why">
           <textarea
-            name="challenges"
-            rows={3}
-            defaultValue={project?.challenges?.join("\n")}
+            name="decisions"
+            rows={4}
+            defaultValue={project?.decisions?.join("\n")}
           />
         </Field>
-        <Field label="Worked with">
-          <input name="collaborators" defaultValue={project?.collaborators} />
+        <Field label="Initiative" hint="optional — beyond the ticket">
+          <textarea
+            name="initiative"
+            rows={2}
+            defaultValue={project?.initiative?.join("\n")}
+          />
         </Field>
         <Field label="Links" hint="one per line: Label | https://…">
           <textarea
